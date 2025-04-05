@@ -36,6 +36,6 @@ func SetupRoutes(app *fiber.App) {
 			return c.Status(fiber.StatusInternalServerError).SendString("Failed to connect to Redis: " + err.Error())
 		}
 		defer client.Close()
-		return c.SendString("Successfully connected to mysql")
+		return c.SendString("Successfully connected to Redis")
 	})
 }

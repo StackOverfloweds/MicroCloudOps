@@ -10,23 +10,24 @@ services:
     ports:
       - "8080:8080"
     env_file:
-      - .env
+      - .env/mysql.env
+      - .env/pg.env
+      - .env/redis.env
     depends_on:
       - mysql
       - postgres
       - redis
+    networks:
+      - microcloud-net
 
   mysql:
     image: mysql:8.0
     container_name: mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - .env/mysql.env
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
@@ -36,12 +37,10 @@ services:
     image: postgres:15
     container_name: postgres
     restart: always
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    env_file:
+      - .env/pg.env
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "5433:5433"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
@@ -50,9 +49,11 @@ services:
   redis:
     image: redis:7
     container_name: redis
+    env_file:
+      - .env/redis.env
     restart: always
     ports:
-      - "${REDIS_PORT}:6379"
+      - "6379:6379"
     networks:
       - microcloud-net
 

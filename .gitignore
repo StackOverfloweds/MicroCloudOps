@@ -37,6 +37,8 @@ __pycache__/
 # Env files
 .env
 .env.*
+/.env
+/.env. *
 
 # Docker volumes
 mysql-data/
