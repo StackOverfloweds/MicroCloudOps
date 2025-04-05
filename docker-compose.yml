@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+
+  db-gateway-service:
+    build:
+      context: ./services/db-gateway-service
+      dockerfile: Dockerfile
+    container_name: db-gateway-service
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - postgres
+      - redis
+
   mysql:
     image: mysql:8.0
     container_name: mysql
