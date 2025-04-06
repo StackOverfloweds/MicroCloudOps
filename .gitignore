@@ -1,0 +1,52 @@
+# Binaries for Go
+**/*.exe
+**/*.exe~
+**/*.dll
+**/*.so
+**/*.dylib
+**/*.test
+**/main
+
+# Output of go build
+**/bin/
+**/build/
+
+# Go vendor
+/vendor/
+
+# Go modules
+/go.sum
+
+# GoLand / VSCode or other IDE settings
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+
+# Dependency directories
+node_modules/
+__pycache__/
+
+# Docker
+**/Dockerfile.*
+**/Dockerfile
+.dockerignore
+
+# Env files
+.env
+.env.*
+/.env
+/.env. *
+
+# Docker volumes
+mysql-data/
+postgres-data/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Cache
+**/.cache
